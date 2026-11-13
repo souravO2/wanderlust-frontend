@@ -6,6 +6,9 @@ import { FeaturedCarousel } from "./featured-carousel";
 export async function Featured() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/featured-destinations`,
+    {
+      cache: "no-store",
+    },
   );
   const destinations: IDestination[] = await res.json();
 

@@ -26,11 +26,15 @@ const DestinationDetailsPage = async ({
 
   const token = await tokenFromServer();
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/all-destinations/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/all-destinations/${id}`,
+    {
+      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   if (!res.ok) notFound();
   const { result: destination }: { result?: IDestination } = await res.json();
   if (!destination) notFound();
